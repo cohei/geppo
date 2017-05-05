@@ -2,7 +2,7 @@ name:                geppo
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/geppo#readme
+homepage:            https://github.com/cohei/geppo#readme
 license:             BSD3
 license-file:        LICENSE
 author:              TANIGUCHI Kohei
@@ -39,4 +39,4 @@ executable geppo
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/geppo
+  location: https://github.com/cohei/geppo
