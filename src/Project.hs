@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
-module Project (extractProjects, toMarkdown) where
+module Project (Project, extractProjects, toMarkdown) where
 
 import Control.Lens ((^..), to, (^?!))
 import Data.Aeson (Value)

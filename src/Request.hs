@@ -11,8 +11,9 @@ import Data.Monoid ((<>))
 import Data.Time (Day)
 import Network.HTTP.Req
 
-import Time (lastMonth, beginningOfMonth, endOfMonth)
+import Project (Project, extractProjects)
 import Setting (Setting(..))
+import Time (lastMonth, beginningOfMonth, endOfMonth)
 
 reportsApiBaseUrl :: Url 'Https
 reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"
@@ -20,10 +21,9 @@ reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"
 instance MonadHttp IO where
   handleHttpException = throwIO
 
-request :: MonadHttp m => Day -> Setting -> m Value
-request today setting = do
-  response <- req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (options today setting)
-  return $ responseBody response
+request :: MonadHttp m => Day -> Setting -> m [Project]
+request today setting =
+  extractProjects . responseBody <$> req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (options today setting)
 
 userAgent :: String
 userAgent = "geppo"
