@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Project, Request, Time, Setting
+  exposed-modules:     Pandoc, Project, Request, Time, Setting
   build-depends:       aeson        == 1.0.*
                      , base         >= 4.7 && < 5
                      , bytestring   == 0.10.*

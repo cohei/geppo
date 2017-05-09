@@ -1,4 +1,4 @@
-module Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth, YearMonth, toYearMonth) where
+module Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth, YearMonth(year, month), toYearMonth) where
 
 import Data.Time (getCurrentTime, getCurrentTimeZone, utcToLocalTime, localDay,
                   Day, fromGregorian, toGregorian, gregorianMonthLength, addGregorianMonthsClip)
