@@ -13,7 +13,7 @@ import Network.HTTP.Req
 
 import Project (Project, extractProjects)
 import Setting (Setting(..))
-import Time (lastMonth, beginningOfMonth, endOfMonth)
+import Time (beginningOfMonth, endOfMonth, YearMonth)
 
 reportsApiBaseUrl :: Url 'Https
 reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"
@@ -21,20 +21,20 @@ reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"
 instance MonadHttp IO where
   handleHttpException = throwIO
 
-request :: MonadHttp m => Day -> Setting -> m [Project]
-request today setting =
-  extractProjects . responseBody <$> req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (options today setting)
+request :: MonadHttp m => YearMonth -> Setting -> m [Project]
+request ym setting =
+  extractProjects . responseBody <$> req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (options ym setting)
 
 userAgent :: String
 userAgent = "geppo"
 
-options :: Day -> Setting -> Option 'Https
-options today setting = mconcat
+options :: YearMonth -> Setting -> Option 'Https
+options ym setting = mconcat
   [ basicAuth (pack $ apiToken setting) "api_token"
   , "user_agent"   =: userAgent
   , "workspace_id" =: workspaceId setting
-  , "since"        =: beginningOfMonth (lastMonth today)
-  , "until"        =: endOfMonth (lastMonth today)
+  , "since"        =: beginningOfMonth ym
+  , "until"        =: endOfMonth ym
   , "client_ids"   =: intercalate "," (clientIds setting)
   , "order_field"  =: ("duration" :: String)
   , "order_desc"   =: ("on" :: String)

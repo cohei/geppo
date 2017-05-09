@@ -1,4 +1,4 @@
-module Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth) where
+module Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth, YearMonth, toYearMonth) where
 
 import Data.Time (getCurrentTime, getCurrentTimeZone, utcToLocalTime, localDay,
                   Day, fromGregorian, toGregorian, gregorianMonthLength, addGregorianMonthsClip)
@@ -9,14 +9,23 @@ getLocalToday = (localDay .) . utcToLocalTime <$> getCurrentTimeZone <*> getCurr
 lastMonth :: Day -> Day
 lastMonth = addGregorianMonthsClip (-1)
 
-beginningOfMonth, endOfMonth :: Day -> Day
-beginningOfMonth day =
+data YearMonth = YearMonth { year :: Integer, month :: Int }
+
+toYearMonth :: Day -> YearMonth
+toYearMonth d = YearMonth { year = y, month = m }
+  where
+    (y, m, _) = toGregorian d
+
+beginningOfMonth, endOfMonth :: YearMonth -> Day
+beginningOfMonth ym =
   let
-    (y, m, _) = toGregorian day
+    y = year ym
+    m = month ym
   in
     fromGregorian y m 1
-endOfMonth day =
+endOfMonth ym =
   let
-    (y, m, _) = toGregorian day
+    y = year ym
+    m = month ym
   in
     fromGregorian y m (gregorianMonthLength y m)
