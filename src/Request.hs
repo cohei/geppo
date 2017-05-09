@@ -11,7 +11,7 @@ import Data.Monoid ((<>))
 import Data.Time (Day)
 import Network.HTTP.Req
 
-import Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth)
+import Time (lastMonth, beginningOfMonth, endOfMonth)
 import Setting (Setting(..))
 
 reportsApiBaseUrl :: Url 'Https
@@ -20,18 +20,18 @@ reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"
 instance MonadHttp IO where
   handleHttpException = throwIO
 
-request :: MonadHttp m => Setting -> m Value
-request setting = do
-  today <- liftIO getLocalToday
-  response <- req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (query setting today <> auth (apiToken setting))
+request :: MonadHttp m => Day -> Setting -> m Value
+request today setting = do
+  response <- req GET (reportsApiBaseUrl /: "summary") NoReqBody jsonResponse (options today setting)
   return $ responseBody response
 
 userAgent :: String
 userAgent = "geppo"
 
-query :: Setting -> Day -> Option 'Https
-query setting today = mconcat
-  [ "user_agent"   =: userAgent
+options :: Day -> Setting -> Option 'Https
+options today setting = mconcat
+  [ basicAuth (pack $ apiToken setting) "api_token"
+  , "user_agent"   =: userAgent
   , "workspace_id" =: workspaceId setting
   , "since"        =: beginningOfMonth (lastMonth today)
   , "until"        =: endOfMonth (lastMonth today)
@@ -39,6 +39,3 @@ query setting today = mconcat
   , "order_field"  =: ("duration" :: String)
   , "order_desc"   =: ("on" :: String)
   ]
-
-auth :: String -> Option 'Https
-auth apiToken = basicAuth (pack apiToken) "api_token"
