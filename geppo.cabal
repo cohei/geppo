@@ -3,7 +3,7 @@
 -- see: https://github.com/sol/hpack
 
 name:           geppo
-version:        0.1.0.1
+version:        0.2.0.0
 category:       Text
 homepage:       https://github.com/cohei/geppo#readme
 bug-reports:    https://github.com/cohei/geppo/issues

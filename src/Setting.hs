@@ -16,13 +16,13 @@ getSettingFromEnv :: IO Setting
 getSettingFromEnv = Setting <$> getApiToken <*> getWorkspaceId <*> getClientIds
 
 getApiToken :: IO String
-getApiToken = getEnv "API_TOKEN"
+getApiToken = getEnv "GEPPO_API_TOKEN"
 
 getWorkspaceId :: IO String
-getWorkspaceId = getEnv "WORKSPACE_ID"
+getWorkspaceId = getEnv "GEPPO_WORKSPACE_ID"
 
 getClientIds :: IO [String]
-getClientIds = split ',' <$> getEnv "CLIENT_IDS"
+getClientIds = split ',' <$> getEnv "GEPPO_CLIENT_IDS"
 
 split :: Eq a => a -> [a] -> [[a]]
 split x = unfoldr $ \xs -> if null xs then Nothing else Just $ second (drop 1) $ break (x ==) xs
