@@ -1,4 +1,4 @@
-module Main where
+module Main (main) where
 
 import           Control.Exception (throwIO)
 import qualified Data.Text.IO      as T (putStr)

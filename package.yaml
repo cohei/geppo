@@ -8,6 +8,22 @@ license: BSD3
 github: cohei/geppo
 extra-source-files:
   - README.md
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wmissing-import-lists
+  - -Wmissing-local-signatures
+  - -Wmonomorphism-restriction
+  - -Wpartial-fields
+  - -Wredundant-constraints
+  - -fdefer-typed-holes
+
 library:
   source-dirs: src
   dependencies:

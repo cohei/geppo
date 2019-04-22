@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-orphans #-}
 {-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE OverloadedStrings #-}
 module Request (request)  where
@@ -5,10 +6,15 @@ module Request (request)  where
 import           Control.Exception     (throwIO)
 import           Data.ByteString.Char8 (pack)
 import           Data.List             (intercalate)
-import           Network.HTTP.Req
+import           Network.HTTP.Req      (GET (GET),
+                                        MonadHttp (handleHttpException),
+                                        NoReqBody (NoReqBody), Option,
+                                        Scheme (Https), Url, basicAuth, https,
+                                        jsonResponse, req, responseBody, (/:),
+                                        (=:))
 
 import           Project               (Project, extractProjects)
-import           Setting               (Setting (..))
+import           Setting               (Setting (apiToken, clientIds, workspaceId))
 import           Time                  (YearMonth, beginningOfMonth, endOfMonth)
 
 reportsApiBaseUrl :: Url 'Https
