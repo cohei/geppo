@@ -8,6 +8,8 @@ toggl から月報。
 
 ### 環境変数
 
-- `GEPPO_API_TOKEN`: Toggl の API トークン
-- `GEPPO_WORKSPACE_ID`: 対象とする Toggl の Workspace ID
-- `GEPPO_CLIENT_IDS`: 対象とする Toggl の Client ID を `,` でつないだもの
+環境変数 | 説明
+--- | ---
+`GEPPO_API_TOKEN` | Toggl の API トークン
+`GEPPO_WORKSPACE_ID` | 対象とする Toggl の Workspace ID
+`GEPPO_CLIENT_IDS` | 対象とする Toggl の Client ID を `,` でつないだもの
