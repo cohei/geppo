@@ -1,13 +1,13 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.1.
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c50ca1315b862c8496fd7990868a1762dfc0b98cb9f39d20b0b495accd7f37a6
+-- hash: b1b5770acc9d1d88909c542bb1a36f8f75336a050a2e3341df583defd6fe8704
 
 name:           geppo
-version:        0.2.0.0
+version:        0.2.0.1
 category:       Text
 homepage:       https://github.com/cohei/geppo#readme
 bug-reports:    https://github.com/cohei/geppo/issues
