@@ -1,17 +1,19 @@
 module Pandoc (toMarkdown, template) where
 
 import           Data.Default                 (def)
-import           Data.Text                    (unpack)
+import           Data.Text                    (Text, unpack)
+import           Text.Pandoc.Class            (runPure)
 import           Text.Pandoc.Definition       (Attr, Block (BulletList, Header, HorizontalRule, Plain),
                                                Inline (Link, Str),
                                                Pandoc (Pandoc), nullMeta)
+import           Text.Pandoc.Error            (PandocError)
 import           Text.Pandoc.Writers.Markdown (writeMarkdown)
 
 import           Project                      (Project (entries, title))
 import           Time                         (YearMonth (month, year))
 
-toMarkdown :: Pandoc -> String
-toMarkdown = writeMarkdown def
+toMarkdown :: Pandoc -> Either PandocError Text
+toMarkdown = runPure . writeMarkdown def
 
 template :: YearMonth -> [Project] -> Pandoc
 template ym projects =

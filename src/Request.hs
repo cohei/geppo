@@ -2,19 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Request (request)  where
 
-import           Control.Exception      (throwIO)
-import           Control.Monad.IO.Class (liftIO)
-import           Data.Aeson             (Value)
-import           Data.ByteString.Char8  (pack)
-import           Data.List              (intercalate)
-import           Data.Monoid            ((<>))
-import           Data.Time              (Day)
+import           Control.Exception     (throwIO)
+import           Data.ByteString.Char8 (pack)
+import           Data.List             (intercalate)
 import           Network.HTTP.Req
 
-import           Project                (Project, extractProjects)
-import           Setting                (Setting (..))
-import           Time                   (YearMonth, beginningOfMonth,
-                                         endOfMonth)
+import           Project               (Project, extractProjects)
+import           Setting               (Setting (..))
+import           Time                  (YearMonth, beginningOfMonth, endOfMonth)
 
 reportsApiBaseUrl :: Url 'Https
 reportsApiBaseUrl = https "toggl.com" /: "reports" /: "api" /: "v2"

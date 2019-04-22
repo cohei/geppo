@@ -11,17 +11,17 @@ extra-source-files:
 library:
   source-dirs: src
   dependencies:
-    - aeson ==1.0.*
+    - aeson
     - base >=4.7 && <5
-    - bytestring ==0.10.*
-    - data-default ==0.7.*
-    - lens ==4.15.*
-    - lens-aeson ==1.0.*
-    - pandoc ==1.19.*
+    - bytestring
+    - data-default
+    - lens
+    - lens-aeson
+    - pandoc
     - pandoc-types
-    - req ==0.2.*
-    - text ==1.2.*
-    - time ==1.6.*
+    - req
+    - text
+    - time
 executables:
   geppo:
     main: Main.hs
@@ -33,3 +33,4 @@ executables:
     dependencies:
       - base
       - geppo
+      - text

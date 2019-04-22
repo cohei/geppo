@@ -1,7 +1,6 @@
 module Setting (Setting(..), getSettingFromEnv) where
 
 import           Control.Arrow      (second)
-import           Data.ByteString    (ByteString)
 import           Data.List          (unfoldr)
 import           System.Environment (getEnv)
 
