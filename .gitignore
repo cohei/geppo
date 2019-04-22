@@ -1,2 +1,2 @@
-/.envrc
-/.stack-work/
+/.ghc.environment.*
+/dist-newstyle/
