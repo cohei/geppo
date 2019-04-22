@@ -1,9 +1,9 @@
 module Main where
 
-import Pandoc  (toMarkdown, template)
-import Request (request)
-import Setting (getSettingFromEnv)
-import Time    (getLocalToday, lastMonth, toYearMonth)
+import           Pandoc  (template, toMarkdown)
+import           Request (request)
+import           Setting (getSettingFromEnv)
+import           Time    (getLocalToday, lastMonth, toYearMonth)
 
 main :: IO ()
 main = do

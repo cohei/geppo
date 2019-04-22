@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE RecordWildCards   #-}
 module Project (Project(title, entries), extractProjects) where
 
-import Control.Lens ((^..), to, (^?!))
-import Data.Aeson (Value)
-import Data.Aeson.Lens (key, _Array, _String)
-import Data.Text (Text)
+import           Control.Lens    (to, (^..), (^?!))
+import           Data.Aeson      (Value)
+import           Data.Aeson.Lens (key, _Array, _String)
+import           Data.Text       (Text)
 
 data Project = Project { title :: Text, entries :: [Entry] }
 type Entry = Text

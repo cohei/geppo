@@ -1,7 +1,9 @@
 module Time (getLocalToday, lastMonth, beginningOfMonth, endOfMonth, YearMonth(year, month), toYearMonth) where
 
-import Data.Time (getCurrentTime, getCurrentTimeZone, utcToLocalTime, localDay,
-                  Day, fromGregorian, toGregorian, gregorianMonthLength, addGregorianMonthsClip)
+import           Data.Time (Day, addGregorianMonthsClip, fromGregorian,
+                            getCurrentTime, getCurrentTimeZone,
+                            gregorianMonthLength, localDay, toGregorian,
+                            utcToLocalTime)
 
 getLocalToday :: IO Day
 getLocalToday = (localDay .) . utcToLocalTime <$> getCurrentTimeZone <*> getCurrentTime

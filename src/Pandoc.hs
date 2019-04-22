@@ -1,12 +1,14 @@
 module Pandoc (toMarkdown, template) where
 
-import Data.Default (def)
-import Data.Text (unpack)
-import Text.Pandoc.Definition (Pandoc(Pandoc), Block(Header, BulletList, Plain, HorizontalRule), Inline(Str), nullMeta, Attr, Inline(Link))
-import Text.Pandoc.Writers.Markdown (writeMarkdown)
+import           Data.Default                 (def)
+import           Data.Text                    (unpack)
+import           Text.Pandoc.Definition       (Attr, Block (BulletList, Header, HorizontalRule, Plain),
+                                               Inline (Link, Str),
+                                               Pandoc (Pandoc), nullMeta)
+import           Text.Pandoc.Writers.Markdown (writeMarkdown)
 
-import Project (Project(title, entries))
-import Time (YearMonth(year, month))
+import           Project                      (Project (entries, title))
+import           Time                         (YearMonth (month, year))
 
 toMarkdown :: Pandoc -> String
 toMarkdown = writeMarkdown def
